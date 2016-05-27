@@ -1,0 +1,19 @@
+{
+  "name": "menux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "app": "electron app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "menubar": "^4.1.1"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.2",
+    "electron-prebuilt": "^1.2.0"
+  }
+}
