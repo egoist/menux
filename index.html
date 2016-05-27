@@ -3,67 +3,36 @@
 <head>
   <meta charset="utf-8">
   <title>menux</title>
-  <style>
-    html {
-      font-size: 16px;
-    }
-    html, body, webview {
-      height: 100%;
-      width: 100%;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      line-height: 1.5;
-    }
-    .bar {
-      height: 8%;
-      background-color: #eee;
-      border-bottom: 1px solid #e2e2e2;
-      display: flex;
-      align-items: center;
-    }
-    .bar input {
-      border: none;
-      background-color: white;
-      height: 60%;
-      padding: 0 10px;
-      font-size: 1rem;
-      outline: none;
-      width: 80%;
-      margin: 0 auto;
-      display: block;
-      box-shadow: 0 0 2px #ccc;
-      border-radius: 2px;
-    }
-    .bar input:focus {
-      box-shadow: 0 0 2px #999;
-    }
-    .main-view {
-      height: 92%;
-    }
-  </style>
+  <link rel="stylesheet" href="./vendor/photon-0.1.2/css/photon.min.css">
+  <link rel="stylesheet" href="./css/app.css">
 </head>
 <body>
-  <bar></bar>
-  <main-view></main-view>
+  <div class="app" :class="{'hide-toolbar': !showToolbar}">
+    <bar></bar>
+    <main-view></main-view>
+  </div>
   <script src="./vendor/vue.js"></script>
   <script src="./vendor/vuex.js"></script>
   <script>
-    const store = require('./vuex/store')
-    const bar = require('./components/bar')
-    const mainView = require('./components/main-view')
+    ;(function () {
+      const store = require('./vuex/store')
+      const bar = require('./components/bar')
+      const mainView = require('./components/main-view')
 
-    new Vue({
-      el: 'body',
-      store,
-      components: {
-        bar,
-        mainView
-      }
-    })
+      new Vue({
+        el: 'body',
+        store,
+        vuex: {
+          getters: {
+            showToolbar: state => state.bar.showToolbar
+          }
+        },
+        components: {
+          bar,
+          mainView
+        }
+      })
+    })();
   </script>
 </body>
 </html>

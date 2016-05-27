@@ -1,0 +1,64 @@
+html {
+  font-size: 16px;
+}
+html, body, webview, .app {
+  height: 100%;
+  width: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* bar */
+.bar {
+  height: 80px;
+}
+.hide-toolbar .bar {
+  height: 48px;
+}
+
+.topbar, .header-toolbar {
+  display: flex;
+}
+.topbar {
+  padding: 0 10px;
+  align-items: center;
+  height: 60%;
+}
+.hide-toolbar .bar .topbar {
+  height: 100%;
+}
+/* url input */
+.topbar input {
+  height: 24px;
+  padding: 0 10px;
+  width: 100%;
+  float: left;
+  margin-right: 10px;
+  border-color: #c2c0c2 #c2c0c2 #a19fa1;
+}
+.topbar button {
+  font-size: 1.5rem;
+  float: right;
+  display: block;
+  height: 24px;
+}
+
+.header-toolbar {
+  height: 40%;
+  position: relative;
+  top: -3px;
+}
+
+
+/* main webview tag */
+.main-view {
+  height: calc(100% - 80px);
+}
+.hide-toolbar .main-view {
+  height: calc(100% - 48px);
+}

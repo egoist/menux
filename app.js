@@ -2,7 +2,9 @@
 const menubar = require('menubar')
 
 const mb = menubar({
-  dir: process.cwd()
+  dir: process.cwd(),
+  wdith: 360,
+  height: 600
 })
 
 mb.on('ready', function ready() {

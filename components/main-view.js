@@ -1,6 +1,7 @@
 'use strict'
 const fs = require('fs')
 const path = require('path')
+const event = require('../utils/event')
 const topbar = require('../vendor/topbar')
 const css = fs.readFileSync(path.join(__dirname, '../css/insert.css'), 'utf8')
 
@@ -17,7 +18,23 @@ module.exports = {
     }
   },
   ready() {
-    
+
+    event.on('view-go-back', () => {
+      if (this.$els.mainView.canGoBack()) {
+        this.$els.mainView.goBack()
+      } else {
+        alert('No previous page')
+      }
+    })
+
+    event.on('view-go-forward', () => {
+      if (this.$els.mainView.canGoForward()) {
+        this.$els.mainView.goForward()
+      } else {
+        alert('No next page')
+      }
+    })
+
     this.$els.mainView.addEventListener('did-navigate', this.didNavigate)
     this.$els.mainView.addEventListener('dom-ready', () => {
       this.$els.mainView.insertCSS(css)
