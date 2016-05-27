@@ -6,7 +6,7 @@ The missing menubar browser for developers.
 
 ## Download
 
-Currently no available, but you can see below ⬇️⬇️
+Currently not available, but you can see below ⬇️⬇️
 
 ## Development
 
