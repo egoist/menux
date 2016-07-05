@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const mb = menubar({
   dir: process.cwd(),
-  wdith: 360,
+  width: 360,
   height: 600
 })
 
