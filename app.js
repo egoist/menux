@@ -14,7 +14,12 @@ mb.on('ready', () => {
 
 mb.on('after-create-window', () => {
   mb.window.openDevTools()
+  // refresh webview only
   globalShortcut.register('CommandOrControl+R', () => {
     mb.window.webContents.send('refresh')
+  })
+  // refresh whole window
+  globalShortcut.register('CommandOrControl+Shift+R', () => {
+    mb.window.reload()
   })
 })

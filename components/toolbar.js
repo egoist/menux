@@ -12,14 +12,28 @@ module.exports = {
           <span class="icon icon-right"></span>
         </button>
       </div>
+
+      <button class="btn btn-default" @click="refreshOrStop">
+        <span class="icon icon-cancel" v-if="loading"></span>
+        <span class="icon icon-cw" v-else></span>
+      </button>
     </div>
   `,
+  vuex: {
+    getters: {
+      loading: state => state.bar.loading
+    }
+  },
   methods: {
     goBack() {
       event.emit('view-go-back')
     },
     goForward() {
       event.emit('view-go-forward')
+    },
+    refreshOrStop() {
+      if (this.loading) event.emit('view-stop')
+      else event.emit('view-reload')
     }
   }
 }

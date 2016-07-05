@@ -32,6 +32,9 @@ body {
 .hide-toolbar .bar .topbar {
   height: 100%;
 }
+.toolbar-actions .btn {
+  height: 24px;
+}
 /* url input */
 .topbar input {
   height: 24px;
@@ -41,7 +44,7 @@ body {
   margin-right: 10px;
   border-color: #c2c0c2 #c2c0c2 #a19fa1;
 }
-.topbar button {
+.topbar .btn {
   font-size: 1.5rem;
   float: right;
   display: block;

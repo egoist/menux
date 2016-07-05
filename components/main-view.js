@@ -3,7 +3,6 @@ const fs = require('fs')
 const path = require('path')
 const {ipcRenderer} = require('electron')
 const event = require('../utils/event')
-const topbar = require('../vendor/topbar')
 const css = fs.readFileSync(path.join(__dirname, '../css/insert.css'), 'utf8')
 
 module.exports = {
@@ -21,6 +20,14 @@ module.exports = {
   ready() {
     ipcRenderer.on('refresh', () => {
       this.$els.mainView.reload()
+    })
+
+    event.on('view-reload', () => {
+      this.$els.mainView.reload()
+    })
+
+    event.on('view-stop', () => {
+      this.$els.mainView.stop()
     })
 
     event.on('view-go-back', () => {
@@ -43,8 +50,12 @@ module.exports = {
     this.$els.mainView.addEventListener('dom-ready', () => {
       this.$els.mainView.insertCSS(css)
     })
-    this.$els.mainView.addEventListener('did-start-loading', topbar.show)
-    this.$els.mainView.addEventListener('did-stop-loading', topbar.hide)
+    this.$els.mainView.addEventListener('did-start-loading', () => {
+      this.$store.dispatch('START_LOADING')
+    })
+    this.$els.mainView.addEventListener('did-stop-loading', () => {
+      this.$store.dispatch('STOP_LOADING')
+    })
   },
   methods: {
     didNavigate(e) {
