@@ -1,6 +1,7 @@
 'use strict'
 const fs = require('fs')
 const path = require('path')
+const {ipcRenderer} = require('electron')
 const event = require('../utils/event')
 const topbar = require('../vendor/topbar')
 const css = fs.readFileSync(path.join(__dirname, '../css/insert.css'), 'utf8')
@@ -18,6 +19,9 @@ module.exports = {
     }
   },
   ready() {
+    ipcRenderer.on('refresh', () => {
+      this.$els.mainView.reload()
+    })
 
     event.on('view-go-back', () => {
       if (this.$els.mainView.canGoBack()) {

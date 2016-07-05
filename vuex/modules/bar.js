@@ -3,7 +3,7 @@
 const showToolbar = JSON.parse(localStorage.getItem('mx:showToolbar') || 'null')
 
 const state = {
-  url: 'https://duckduckgo.com',
+  url: 'https://www.baidu.com',
   showToolbar
 }
 

@@ -1,5 +1,6 @@
 'use strict'
 const menubar = require('menubar')
+const {globalShortcut, ipcMain} = require('electron')
 
 const mb = menubar({
   dir: process.cwd(),
@@ -7,11 +8,13 @@ const mb = menubar({
   height: 600
 })
 
-mb.on('ready', function ready() {
+mb.on('ready', () => {
   console.log('app is ready')
-  // your app code here
 })
 
-mb.on('after-create-window', function created() {
+mb.on('after-create-window', () => {
   mb.window.openDevTools()
+  globalShortcut.register('CommandOrControl+R', () => {
+    mb.window.webContents.send('refresh')
+  })
 })
