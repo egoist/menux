@@ -21,7 +21,7 @@ body {
   height: 48px;
 }
 
-.topbar, .header-toolbar {
+.topbar {
   display: flex;
 }
 .topbar {
@@ -55,8 +55,14 @@ body {
   height: 40%;
   position: relative;
   top: -3px;
+  padding: 0 6px;
 }
 
+.header-toolbar .btn-list {
+  width: 28px;
+  text-align: center;
+  padding: 3px 6px;
+}
 
 /* main webview tag */
 .main-view {

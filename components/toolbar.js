@@ -17,6 +17,10 @@ module.exports = {
         <span class="icon icon-cancel" v-if="loading"></span>
         <span class="icon icon-cw" v-else></span>
       </button>
+
+      <button class="btn btn-default pull-right btn-list">
+        <span class="icon icon-down-open"></span>
+      </button>
     </div>
   `,
   vuex: {
