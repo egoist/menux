@@ -1,8 +1,9 @@
 'use strict'
 const menubar = require('menubar')
-const {globalShortcut, ipcMain} = require('electron')
+const {globalShortcut, ipcMain, BrowserWindow} = require('electron')
 const config = require('./utils/config')
 
+let settingsWindow
 const isDev = process.env.NODE_ENV === 'development'
 const lastWindowState = config.get('lastWindowState')
 
@@ -32,4 +33,13 @@ mb.app.on('before-quit', () => {
 	if (!mb.window.isFullScreen()) {
 		config.set('lastWindowState', mb.window.getBounds());
 	}
+})
+
+ipcMain.on('open-settings', () => {
+  console.log('open settings')
+  settingsWindow = new BrowserWindow({
+    width: 600,
+    height: 300
+  })
+  settingsWindow.loadURL(`file://${__dirname}/settings.html`)
 })

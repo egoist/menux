@@ -1,4 +1,5 @@
 'use strict'
+const {ipcRenderer} = require('electron')
 const event = require('../utils/event')
 
 module.exports = {
@@ -16,6 +17,10 @@ module.exports = {
       <button class="btn btn-default" @click="refreshOrStop">
         <span class="icon icon-cancel" v-if="loading"></span>
         <span class="icon icon-cw" v-else></span>
+      </button>
+
+      <button class="btn btn-default" @click="openSettings">
+        <span class="icon icon-cog"></span>
       </button>
 
       <button class="btn btn-default pull-right btn-list">
@@ -38,6 +43,9 @@ module.exports = {
     refreshOrStop() {
       if (this.loading) event.emit('view-stop')
       else event.emit('view-reload')
+    },
+    openSettings() {
+      ipcRenderer.send('open-settings')
     }
   }
 }
