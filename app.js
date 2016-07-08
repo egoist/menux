@@ -1,13 +1,15 @@
 'use strict'
 const menubar = require('menubar')
 const {globalShortcut, ipcMain} = require('electron')
+const config = require('./utils/config')
 
 const isDev = process.env.NODE_ENV === 'development'
+const lastWindowState = config.get('lastWindowState')
 
 const mb = menubar({
   dir: process.cwd(),
-  width: 360,
-  height: 600
+  width: lastWindowState.width,
+  height: lastWindowState.height
 })
 
 mb.on('ready', () => {
@@ -24,4 +26,10 @@ mb.on('after-create-window', () => {
   globalShortcut.register('CommandOrControl+Shift+R', () => {
     mb.window.reload()
   })
+})
+
+mb.app.on('before-quit', () => {
+	if (!mb.window.isFullScreen()) {
+		config.set('lastWindowState', mb.window.getBounds());
+	}
 })
